@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#103e31">
+  <meta name="description" content="FreeDoom — платформа управления качеством клиентских диалогов">
+  <title>FreeDoom · Quality Intelligence</title>
+  <link rel="stylesheet" href="/static/styles.css?v=6">
+  <link rel="stylesheet" href="/static/presentation.css?v=6">
+  <script src="/static/features.js?v=6" defer></script>
+  <script src="/static/app.js?v=6" defer></script>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">F</div>
+      <div><strong>free<span>doom</span><span class="brand-dot">.</span></strong><small>QUALITY INTELLIGENCE</small></div>
+    </div>
+    <div class="nav-caption">ПЛАТФОРМА</div>
+    <nav class="nav" aria-label="Главное меню">
+      <button class="nav-link active" data-page="dashboard"><span class="nav-ico" aria-hidden="true">▦</span> Обзор</button>
+      <button class="nav-link" data-page="conversations"><span class="nav-ico" aria-hidden="true">▤</span> Диалоги <span id="navConvoCount" class="nav-count">—</span></button>
+      <button class="nav-link" data-page="evaluations"><span class="nav-ico" aria-hidden="true">◉</span> Оценки</button>
+      <button class="nav-link" data-page="audit"><span class="nav-ico" aria-hidden="true">⌕</span> Аудит оценок</button>
+      <div class="nav-caption nav-caption-inner">ИНТЕЛЛЕКТУАЛЬНЫЕ ИНСТРУМЕНТЫ</div>
+      <button class="nav-link nav-feature" data-page="insights"><span class="nav-ico" aria-hidden="true">◈</span> Центр проблем <span class="nav-new">NEW</span></button>
+      <button class="nav-link nav-feature" data-page="coach"><span class="nav-ico" aria-hidden="true">✧</span> AI Coach <span class="nav-new">NEW</span></button>
+      <div class="nav-caption nav-caption-inner">УПРАВЛЕНИЕ</div>
+      <button class="nav-link" data-page="checklists"><span class="nav-ico" aria-hidden="true">☷</span> Чек-листы</button>
+      <button class="nav-link" data-page="appeals"><span class="nav-ico" aria-hidden="true">⇄</span> Апелляции <span id="navAppealsCount" class="nav-count">0</span></button>
+      <button class="nav-link" data-page="export"><span class="nav-ico" aria-hidden="true">⇩</span> Результаты и выгрузка</button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-feature">
+        <div class="sidebar-feature-mark">✧</div>
+        <div class="sidebar-feature-title">От контроля к улучшениям</div>
+        <p>Находим слабые места, помогаем оператору и руководителю.</p>
+        <button class="sidebar-feature-link" data-page="coach">Открыть AI Coach <span>↗</span></button>
+      </div>
+      <div class="sidebar-info"><span class="green-dot"></span><span>Сервер</span><span id="connectionText">подключение…</span></div>
+      <div class="small-note">Hackathon · Freedom Broker<br>FreeDoom Prototype 2026</div>
+    </div>
+  </aside>
+  <main class="workspace">
+    <header class="topbar">
+      <div class="breadcrumbs"><span class="breadcrumb-root">Рабочее пространство</span><span class="crumb-sep">/</span><strong id="breadcrumb">Обзор</strong></div>
+      <div class="topbar-right"><span class="topbar-caption">ANALYTICS WORKSPACE</span><span id="modelLabel" class="model-chip">● Подключение…</span><span class="avatar" aria-label="FreeDoom">FD</span></div>
+    </header>
+    <div class="content" id="content" aria-live="polite"></div>
+  </main>
+</div>
+<div id="toastContainer" class="toast-container" role="status"></div>
+<div id="modalRoot"></div>
+</body>
+</html>

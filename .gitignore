@@ -1,0 +1,15 @@
+.env
+.env.*
+!.env.example
+data/cache/
+data/*.sqlite
+data/*.sqlite-shm
+data/*.sqlite-wal
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.DS_Store
+
+data/dev.json
+data/previous_results.json
