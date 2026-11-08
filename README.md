@@ -41,6 +41,20 @@
 - **Аудит оценок** — без дополнительных вызовов ИИ проверяет шкалы, N/A, ссылки на доказательства, арифметику и потенциальные противоречия обоснований.
 - **История оценок** — сохраняет разные попытки анализа и позволяет явно выбрать основной результат; повторный запуск не заменяет его незаметно.
 
+## Интерфейс FreeDoom
+
+### Главная панель
+![FreeDoom Dashboard](screenshots/main.png)
+
+### Анализ диалога
+![AI Evaluation](screenshots/analysis.png)
+
+### AI Coach
+![FreeDoom AI Coach](screenshots/rooth.png)
+
+### Root Cause Analysis
+![Root Cause Analysis](screenshots/center.png)
+
 ### Как устроен процесс
 
 ```mermaid
@@ -103,20 +117,6 @@ MOCK=0
 ```
 
 > **Важно при клонировании из GitHub:** исходные `data/dev.json`, историческая SQLite-база и `.env` намеренно **не публикуются**. Поэтому после первого запуска на новом компьютере список диалогов будет пустым, пока вы не загрузите предоставленный организаторами набор. Публичный файл с результатами DEV находится отдельно в `results/dev/results.json`; он не является исходным набором транскриптов и сам по себе не восстанавливает карточки в SQLite.
-
-## Интерфейс FreeDoom
-
-### Главная панель
-![FreeDoom Dashboard](screenshots/main.png)
-
-### Анализ диалога
-![AI Evaluation](screenshots/analysis.png)
-
-### AI Coach
-![FreeDoom AI Coach](screenshots/rooth.png)
-
-### Root Cause Analysis
-![Root Cause Analysis](screenshots/center.png)
 
 ## 📥 Загрузка и оценивание диалогов
 
