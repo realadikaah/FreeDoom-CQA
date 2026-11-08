@@ -206,3 +206,151 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .result-head .criterion-verdict.bad{color:#a34035;background:#ffebe7}
 .result-head .criterion-verdict.neutral{color:#506a5b;background:#edf2ee}
 @media(max-width:520px){.result-head{align-items:flex-start;flex-wrap:wrap}.result-head .criterion-verdict{margin-left:auto}}
+
+/* FreeDoom UI motion polish — CSS-only; no changes to markup, scores, API, or layouts.
+   All animations are optional and respect reduced-motion accessibility settings. */
+
+/* Fast but calm page entrances when the existing JS renders a new section. */
+#content > * {
+  animation: fd-content-enter 340ms cubic-bezier(.22, .68, .2, 1) backwards;
+}
+#content > :nth-child(2) { animation-delay: 35ms; }
+#content > :nth-child(3) { animation-delay: 65ms; }
+#content > :nth-child(4) { animation-delay: 90ms; }
+#content > :nth-child(5) { animation-delay: 115ms; }
+#content > :nth-child(n+6) { animation-delay: 130ms; }
+@keyframes fd-content-enter {
+  from { opacity: 0; transform: translateY(9px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* The original FreeDoom F emblem: a one-time reveal, then a subtle hover reaction.
+   Dimensions, shape, lettering and color palette stay untouched. */
+.brand-mark {
+  transform-origin: 50% 62%;
+  animation: fd-brand-arrive 700ms cubic-bezier(.18,.86,.31,1) backwards;
+  transition: transform 400ms cubic-bezier(.2,.7,.2,1), filter 400ms ease;
+}
+.brand:hover .brand-mark {
+  transform: rotate(-5deg) translateY(-2px);
+  filter: drop-shadow(0 3px 8px rgba(112,245,175,.28));
+}
+@keyframes fd-brand-arrive {
+  from { opacity: 0; transform: translateY(8px) scale(.92) rotate(-7deg); }
+  to   { opacity: 1; transform: translateY(0) scale(1) rotate(0); }
+}
+
+/* Large hero F: a quiet floating reveal and fine orbit detail on hover. */
+.dashboard-intro .intro-core {
+  transform-origin: 50% 50%;
+  animation: fd-logo-arrive 900ms cubic-bezier(.18,.85,.22,1) 120ms backwards;
+  transition: transform 650ms cubic-bezier(.2,.7,.2,1), filter 650ms ease;
+  will-change: auto;
+}
+.dashboard-intro:hover .intro-core {
+  transform: translateY(-5px) rotate(-7deg) scale(1.035);
+  filter: drop-shadow(0 12px 16px rgba(169,255,193,.20));
+}
+.dashboard-intro .intro-orbit {
+  transition: border-color 450ms ease, opacity 450ms ease;
+  transform-origin: 50% 50%;
+}
+.dashboard-intro:hover .orbit-one {
+  border-color: rgba(158,255,187,.42);
+  animation: fd-orbit-rotate 26s linear infinite;
+}
+.dashboard-intro:hover .orbit-two {
+  border-color: rgba(182,251,197,.70);
+  animation: fd-orbit-rotate 18s linear infinite reverse;
+}
+@keyframes fd-logo-arrive {
+  from { opacity: .2; transform: translateY(15px) rotate(-17deg) scale(.93); }
+  to   { opacity: 1; transform: translateY(0) rotate(-11deg) scale(1); }
+}
+@keyframes fd-orbit-rotate { to { transform: rotate(360deg); } }
+
+/* Tactile responses for actual controls, without changing their size or position. */
+.nav-link .nav-ico,
+.btn .nav-ico,
+.feature-tile .feature-icon,
+.sidebar-feature-link span,
+.feature-link b {
+  transition: transform 260ms cubic-bezier(.2,.7,.2,1);
+}
+.nav-link:hover .nav-ico { transform: translateX(2px); }
+.feature-tile:hover .feature-icon { transform: translateY(-2px) rotate(-4deg); }
+.feature-tile:hover .feature-link b,
+.sidebar-feature-link:hover span { transform: translate(2px,-2px); }
+.btn:active:not(:disabled),
+.feature-tile:active,
+.nav-link:active,
+.pattern-item:active {
+  transform: scale(.985);
+}
+.btn, .inline-link, .sidebar-feature-link, .evidence-btn,
+.pattern-item, .result-criterion.clickable-criterion, .audit-criterion-review summary {
+  transition: transform 200ms ease, box-shadow 200ms ease,
+    color 200ms ease, background-color 200ms ease, border-color 200ms ease;
+}
+.inline-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+.pattern-item:hover, .pattern-item:focus-visible {
+  transform: translateY(-2px);
+  border-color: #b5dcc6;
+  box-shadow: 0 7px 18px rgba(13,85,51,.06);
+}
+.form-control, input[type="checkbox"], select, textarea {
+  transition: border-color 200ms ease, box-shadow 200ms ease,
+    background-color 200ms ease;
+}
+
+/* Small visual feedback on real evidence and freshly opened dialogs. */
+.turn.highlighted { animation: fd-evidence-flash 950ms ease-out both; }
+@keyframes fd-evidence-flash {
+  0%   { box-shadow: 0 0 0 0 rgba(240,193,114,.34); }
+  40%  { box-shadow: 0 0 0 6px rgba(240,193,114,.18); }
+  100% { box-shadow: 0 0 25px #eccb7259; }
+}
+.modal-shade { animation: fd-overlay-enter 200ms ease-out backwards; }
+.modal-shade .modal { animation: fd-modal-enter 260ms cubic-bezier(.2,.7,.2,1) backwards; }
+.toast { animation: fd-toast-enter 300ms cubic-bezier(.2,.7,.2,1) backwards; }
+@keyframes fd-overlay-enter { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fd-modal-enter {
+  from { opacity: .25; transform: translateY(9px) scale(.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes fd-toast-enter {
+  from { opacity: 0; transform: translateX(14px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Progress bars grow to the already-computed values; no data or score animation. */
+.lang-meter .progress-fill {
+  transform-origin: left center;
+  animation: fd-meter-grow 700ms cubic-bezier(.2,.7,.2,1) 160ms backwards;
+}
+@keyframes fd-meter-grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* Explicitly honor users who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  #content > *, .brand-mark, .dashboard-intro .intro-core,
+  .dashboard-intro .intro-orbit, .turn.highlighted, .modal-shade,
+  .modal-shade .modal, .toast, .lang-meter .progress-fill {
+    animation: none !important;
+    transition: none !important;
+  }
+  .brand:hover .brand-mark,
+  .dashboard-intro:hover .intro-core,
+  .nav-link:hover .nav-ico,
+  .feature-tile:hover .feature-icon,
+  .pattern-item:hover,
+  .pattern-item:focus-visible,
+  .btn:active:not(:disabled),
+  .nav-link:active,
+  .feature-tile:active,
+  .pattern-item:active {
+    transform: none !important;
+  }
+}
